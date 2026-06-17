@@ -3,6 +3,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const healthRoutes = require('./routes/health');
+const authRoutes = require('./routes/auth');
 const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
@@ -24,6 +25,7 @@ if (process.env.NODE_ENV !== 'test') {
 
 // Mount Application Routes
 app.use('/health', healthRoutes);
+app.use('/api/v1/auth', authRoutes);
 
 // 404 Route Handler - matches any request that didn't hit a route handler above
 app.use((req, res, next) => {
